@@ -1,0 +1,167 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-team-red: var(--team-red);
+  --color-team-red-foreground: var(--team-red-foreground);
+  --color-team-blue: var(--team-blue);
+  --color-team-blue-foreground: var(--team-blue-foreground);
+  --color-neutral-card: var(--neutral-card);
+  --color-assassin: var(--assassin);
+  --color-gold: var(--gold);
+
+  --font-display: "Amiri", "Cairo", serif;
+  --font-arabic: "Cairo", "Amiri", system-ui, sans-serif;
+
+  --shadow-card: 0 8px 30px -8px color-mix(in oklab, var(--background) 70%, black);
+  --shadow-glow-red: 0 0 40px color-mix(in oklab, var(--team-red) 50%, transparent);
+  --shadow-glow-blue: 0 0 40px color-mix(in oklab, var(--team-blue) 50%, transparent);
+  --shadow-glow-gold: 0 0 30px color-mix(in oklab, var(--gold) 60%, transparent);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Moroccan night palette */
+  --background: oklch(0.18 0.04 25); /* deep burgundy-black */
+  --foreground: oklch(0.96 0.02 85); /* warm cream */
+
+  --card: oklch(0.23 0.05 25);
+  --card-foreground: oklch(0.96 0.02 85);
+
+  --popover: oklch(0.23 0.05 25);
+  --popover-foreground: oklch(0.96 0.02 85);
+
+  --primary: oklch(0.78 0.15 75); /* gold */
+  --primary-foreground: oklch(0.18 0.04 25);
+
+  --secondary: oklch(0.3 0.06 200); /* teal accent */
+  --secondary-foreground: oklch(0.96 0.02 85);
+
+  --muted: oklch(0.26 0.03 25);
+  --muted-foreground: oklch(0.72 0.04 80);
+
+  --accent: oklch(0.55 0.18 30); /* terracotta */
+  --accent-foreground: oklch(0.96 0.02 85);
+
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.35 0.06 30 / 0.5);
+  --input: oklch(0.3 0.05 30);
+  --ring: oklch(0.78 0.15 75);
+
+  /* Team colors */
+  --team-red: oklch(0.58 0.22 25);
+  --team-red-foreground: oklch(0.98 0.02 80);
+  --team-blue: oklch(0.55 0.16 235);
+  --team-blue-foreground: oklch(0.98 0.02 80);
+  --neutral-card: oklch(0.78 0.05 80);
+  --assassin: oklch(0.12 0.02 25);
+  --gold: oklch(0.82 0.16 78);
+
+  --sidebar: oklch(0.2 0.04 25);
+  --sidebar-foreground: oklch(0.96 0.02 85);
+  --sidebar-primary: oklch(0.78 0.15 75);
+  --sidebar-primary-foreground: oklch(0.18 0.04 25);
+  --sidebar-accent: oklch(0.26 0.05 25);
+  --sidebar-accent-foreground: oklch(0.96 0.02 85);
+  --sidebar-border: oklch(0.35 0.06 30 / 0.5);
+  --sidebar-ring: oklch(0.78 0.15 75);
+}
+
+.dark {
+  /* same as root — game is dark by default */
+  --background: oklch(0.18 0.04 25);
+  --foreground: oklch(0.96 0.02 85);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { font-family: var(--font-arabic); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at top, color-mix(in oklab, var(--accent) 15%, transparent), transparent 60%),
+      radial-gradient(ellipse at bottom, color-mix(in oklab, var(--secondary) 12%, transparent), transparent 55%);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .zellij-bg {
+    position: relative;
+    isolation: isolate;
+  }
+  .zellij-bg::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: var(--zellij-image);
+    background-size: 360px;
+    opacity: 0.08;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .text-arabic { font-family: var(--font-arabic); }
+  .text-display { font-family: var(--font-display); }
+
+  .gold-text {
+    background: linear-gradient(135deg, oklch(0.92 0.14 90), oklch(0.7 0.18 60));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .card-tile {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-tile:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow-gold);
+  }
+
+  @keyframes flip-in {
+    0% { transform: rotateY(90deg); opacity: 0; }
+    100% { transform: rotateY(0); opacity: 1; }
+  }
+  .animate-flip { animation: flip-in 0.5s ease forwards; }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px color-mix(in oklab, var(--gold) 40%, transparent); }
+    50% { box-shadow: 0 0 40px color-mix(in oklab, var(--gold) 70%, transparent); }
+  }
+  .animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+}
