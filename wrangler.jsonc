@@ -1,17 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "tanstack-start-app",
+  "name": "darija-clues-game",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/react-start/server-entry",
-  "routes": [
-    {
-      "pattern": "example.com/api/*",
-      "zone_name": "example.com"
-    },
-    {
-      "pattern": "example.com/*",
-      "zone_name": "example.com"
-    }
-  ]
+  "main": "@tanstack/react-start/server-entry"
 }
