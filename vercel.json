@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/server",
+  "framework": "other",
+  "functions": {
+    "index.js": {
+      "runtime": "nodejs20.x"
+    }
+  }
+}
